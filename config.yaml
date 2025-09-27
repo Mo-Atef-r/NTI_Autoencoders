@@ -5,7 +5,8 @@ dataset:
   validation_split: 0.2
 
 model:
-  embedding_dim: 2
+  embedding_dim: 64
+  dropout_rate: 0.3
 
 training:
   batch_size: 100

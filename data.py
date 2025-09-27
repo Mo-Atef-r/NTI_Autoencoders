@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
-from torch.utils import Dataset, DataLoader
-from torchvision import datasets, transforms, random_split
+from torch.utils.data import Dataset, DataLoader, random_split
+from torchvision import datasets, transforms
 import yaml
 
 # ----- Hyperparameters -----
