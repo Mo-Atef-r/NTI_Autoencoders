@@ -1,0 +1,13 @@
+# ----- Hyperparameters -----
+dataset:
+  image_size: 28
+  channels: 1
+  validation_split: 0.2
+
+model:
+  embedding_dim: 2
+
+training:
+  batch_size: 100
+  epochs: 3
+  learning_rate: 0.001

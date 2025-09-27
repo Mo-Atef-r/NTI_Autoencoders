@@ -1,17 +1,17 @@
 import torch
 import torch.nn as nn
-#from torch.utils import Dataset, DataLoader
-#from torchvision import datasets, transforms
+import yaml
 
 
 # ----- Hyperparameters -----
-IMAGE_SIZE = 28
-CHANNELS = 1
-BATCH_SIZE = 100
-BUFFER_SIZE = 1000
-VALIDATION_SPLIT = 0.2
-EMBEDDING_DIM = 2
-EPOCHS = 3
+with open("config.yaml", 'r') as file:
+    config = yaml.safe_load(file)
+    
+
+IMAGE_SIZE = config['dataset']['image_size']
+CHANNELS = config['dataset']['channels']
+
+EMBEDDING_DIM = config['model']['embedding_dim']
 
 class Encoder(nn.Module):
     def __init__(self, image_Size, n_channels, embedding_dim):
@@ -73,7 +73,7 @@ class Autoencoder(nn.Module):
 if __name__ == "__main__":
     model = Autoencoder(IMAGE_SIZE, CHANNELS, EMBEDDING_DIM)
     print(model)
-    sample_input = torch.randn((BATCH_SIZE, CHANNELS, IMAGE_SIZE, IMAGE_SIZE))
+    sample_input = torch.randn((32, CHANNELS, IMAGE_SIZE, IMAGE_SIZE))
     sample_output = model(sample_input)
     print(f"Input shape: {sample_input.shape}")
     print(f"Output shape: {sample_output.shape}")
