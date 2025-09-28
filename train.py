@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 
-from model import Encoder, Decoder, Autoencoder
+from model_var import Encoder, Decoder, VariationalAutoencoder
 from data import train_loader, val_loader, test_loader
 from utils import plot_images, plot_images_2
 from tqdm import tqdm
@@ -34,7 +34,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 encoder = Encoder(IMAGE_SIZE, CHANNELS, DROPOUT, EMBEDDING_DIM)
 decoder = Decoder(IMAGE_SIZE, CHANNELS, DROPOUT, EMBEDDING_DIM)
 
-model = Autoencoder(encoder, decoder).to(device)
+model = VariationalAutoencoder(encoder, decoder).to(device)
 criterion = nn.BCELoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)
 
